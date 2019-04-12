@@ -23,3 +23,36 @@ Thumbs.db
 !.vscode/launch.json
 !.vscode/extensions.json
 *.sublime-workspace
+
+# Dependencies
+node_modules
+.pnpm-debug.log
+
+# ------------------------------ #
+# ----------Aurelia.js---------- #
+# ------------------------------ #
+
+aureliajs/scripts
+aureliajs/src/environment.ts
+aureliajs/dist
+aureliajs/test/coverage-jest
+aureliajs/test/coverage-karma
+aureliajs/.nyc_output
+aureliajs/coverage
+aureliajs/.fusebox
+aureliajs/.cache
+#aureliajs/index.html
+aureliajs/cypress/videos
+aureliajs/cypress/screenshots
+
+# ------------------------------ #
+# ----------Adonis.js----------- #
+# ------------------------------ #
+
+adonisjs/.env
+adonisjs/.env.testing
+adonisjs/tmp
+adonisjs/build
+adonisjs/coverage
+adonisjs/public/scripts
+adonisjs/database/development.sqlite

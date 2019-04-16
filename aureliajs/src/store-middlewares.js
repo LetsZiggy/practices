@@ -1,0 +1,55 @@
+import { MiddlewarePlacement } from "aurelia-store"
+
+const middlewares = {
+// 	middleware: (currentState, originalState, settings, action) => {},
+}
+
+const getMiddleware = (keyArray, middleware = middlewares) => {
+	const maxIndex = keyArray.length - 1
+
+	middleware = (maxIndex !== 0)
+		? getMiddleware(keyArray.slice(1), middleware[keyArray[0]])
+		: middleware[keyArray[0]]
+
+	return middleware
+}
+
+// store.registerMiddleware(middleware, MiddlewarePlacement[placement], options)
+export const registerMiddlewares = (store, list) => {
+	list
+		.map(({ key, placement, options }) => {
+			placement = placement
+				.toLowerCase()
+				.replace(/(^[a-z]| [a-z])/g, (match) => match.toUpperCase())
+
+			const middleware = (typeof key === "string")
+				? getMiddleware(key.split("."))
+				: key
+
+			return ({
+				middleware: middleware,
+				placement: placement,
+				options: options,
+			})
+		})
+		.forEach(({ middleware, placement, options }) => {
+			store.registerMiddleware(middleware, MiddlewarePlacement[placement], options)
+		})
+}
+
+// store.unregisterMiddleware(middleware)
+export const unregisterMiddlewares = (store, list) => {
+	list
+		.map(({ key }) => {
+			const middleware = (typeof key === "string")
+				? getMiddleware(key.split("."))
+				: key
+
+			return ({
+				middleware: middleware,
+			})
+		})
+		.forEach(({ middleware }) => {
+			store.unregisterMiddleware(middleware)
+		})
+}

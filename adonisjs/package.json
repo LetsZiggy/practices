@@ -1,0 +1,52 @@
+{
+	"name": "jobpostr-adonisjs",
+	"description": "JobPostr - Aurelia.js",
+	"version": "0.1.0",
+	"adonis-version": "4.1.0",
+	"contributors": [
+		"Shafiq Tahir"
+	],
+	"license": "MIT",
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/LetsZiggy/practice-jobpostr"
+	},
+	"keywords": [
+		"adonisjs"
+	],
+	"scripts": {
+		"jsdoc": "jsdoc ./ -c ./jsdoc.js",
+		"start": "node server.js",
+		"test": "node ace test"
+	},
+	"autoload": {
+		"App": "./app"
+	},
+	"dependencies": {
+		"@adonisjs/ace": "^5.0.8",
+		"@adonisjs/auth": "^3.1.0",
+		"@adonisjs/bodyparser": "^2.0.5",
+		"@adonisjs/cors": "^1.0.7",
+		"@adonisjs/fold": "^4.0.9",
+		"@adonisjs/framework": "^5.0.9",
+		"@adonisjs/ignitor": "^2.0.8",
+		"@adonisjs/lucid": "^6.1.3",
+		"@adonisjs/session": "^1.0.29",
+		"@adonisjs/shield": "^1.0.8",
+		"@adonisjs/validator": "^5.0.6",
+		"@adonisjs/vow": "^1.0.17",
+		"pg": "^8.0.0"
+	},
+	"devDependencies": {
+		"babel-eslint": "^10.0.3",
+		"eslint": "^6.8.0",
+		"eslint-config-standard": "^14.1.1",
+		"eslint-plugin-import": "^2.20.2",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-promise": "^4.2.1",
+		"eslint-plugin-standard": "^4.0.1",
+		"eslint_d": "^8.1.1",
+		"jsdoc": "^3.6.3"
+	}
+}

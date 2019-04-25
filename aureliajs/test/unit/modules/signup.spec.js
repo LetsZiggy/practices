@@ -1,13 +1,13 @@
 import { bootstrap } from "aurelia-bootstrapper"
 import { StageComponent } from "aurelia-testing"
 
-xdescribe("Stage App Component", () => {
+describe("Stage Sign-Up Component", () => {
 	let component
 
 	beforeEach(() => {
 		component = StageComponent
-			.withResources("app")
-			.inView("<app></app>")
+			.withResources("modules/signup")
+			.inView("<signup></signup>")
 	})
 
 	afterEach(() => component.dispose())
@@ -17,7 +17,7 @@ xdescribe("Stage App Component", () => {
 			.create(bootstrap)
 			.then(() => {
 				const view = document.querySelector("h1")
-				expect(view.textContent.trim()).toBe("JobPostr")
+				expect(view.textContent.trim()).toBe("Sign Up")
 				done()
 			})
 			.catch((e) => {

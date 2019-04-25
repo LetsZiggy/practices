@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+	@apply flex flex-col flex-no-wrap justify-start items-start content-start w-full h-screen p-0 m-0 font-sans;
+}

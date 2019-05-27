@@ -13,6 +13,9 @@
 				<a route-href="route: signup;" class="text-sm text-gray-400 hover:text-gray-100 no-underline uppercase">Sign-up</a>
 			</li>
 			<li if.bind="isSignin" class="mr-8">
+				<a route-href="route: new-job;" class="text-sm text-gray-400 hover:text-gray-100 no-underline uppercase">New-Job</a>
+			</li>
+			<li if.bind="isSignin" class="mr-8">
 				<button class="text-sm text-gray-400 hover:text-gray-100 no-underline uppercase" click.delegate="signout()">Sign-out</button>
 			</li>
 		</ul>

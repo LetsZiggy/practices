@@ -45,6 +45,104 @@ const actions = {
 			userId: data,
 		})
 	},
+	setJobs: (state, { data = [], type = "full" }) => {
+		let jobs = null
+
+		if (type === "full") {
+			jobs = [ ...data ]
+		}
+		else {
+			const currentJobs = [ ...state.present.jobs ]
+			const newJobs = []
+
+			for (let i = (data.length - 1); i >= 0; i--) {
+				let found = false
+
+				for (let j = (currentJobs.length - 1); j >= 0; j--) {
+					if (currentJobs[j].id === data[i].id) {
+						found = true
+						currentJobs[j] = { ...data[i] }
+						break
+					}
+				}
+
+				if (!found) {
+					newJobs.push(data[i])
+				}
+			}
+
+			jobs = [ ...currentJobs, ...newJobs ]
+		}
+
+		return nextStateHistory(state, {
+			...state.present,
+			jobs: jobs,
+		})
+	},
+	setJobsLastUpdate: (state) => {
+		return nextStateHistory(state, {
+			...state.present,
+			jobsLastUpdate: Date.now(),
+		})
+	},
+	updateJob: (state, data = { id: 0 }) => {
+		const jobs = [ ...state.present.jobs ]
+		const index = jobs
+			.reduce((acc, value, index) => {
+				return ((value.id === data.id) ? index : acc)
+			}, -1)
+
+		if (index === -1) {
+			return nextStateHistory(state, {
+				...state.present,
+			})
+		}
+
+		jobs[index] = { ...jobs[index], ...data }
+
+		return nextStateHistory(state, {
+			...state.present,
+			jobs: jobs,
+		})
+	},
+	deleteJob: (state, data = { id: 0 }) => {
+		const jobs = [ ...state.present.jobs ]
+		const index = jobs
+			.reduce((acc, value, index) => {
+				return ((value.id === data.id) ? index : acc)
+			}, -1)
+
+		if (index === -1) {
+			return nextStateHistory(state, {
+				...state.present,
+			})
+		}
+
+		jobs.splice(index, 1)
+
+		return nextStateHistory(state, {
+			...state.present,
+			jobs: jobs,
+		})
+	},
+	toggleJobTitleValid: (state, data = false) => {
+		return nextStateHistory(state, {
+			...state.present,
+			isJobTitleValid: data,
+		})
+	},
+	toggleJobLinkValid: (state, data = false) => {
+		return nextStateHistory(state, {
+			...state.present,
+			isJobLinkValid: data,
+		})
+	},
+	toggleJobDescriptionValid: (state, data = false) => {
+		return nextStateHistory(state, {
+			...state.present,
+			isJobDescriptionValid: data,
+		})
+	},
 	// action: (state, data) => {
 	// 	return nextStateHistory(state, {
 	// 		...state.present,

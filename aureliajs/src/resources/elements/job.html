@@ -1,0 +1,14 @@
+<template>
+	<div class="w-16 h-16 m-2 border-black border-solid border bg-gray-100">
+		<img src.one-way="url" alt.one-way="job.title" class="text-xs text-gray-600">
+	</div>
+	<div class="w-auto h-16 mt-2 ml-2">
+		<div class="flex-no-wrap flex flex-row content-start items-center justify-start w-100 h-auto">
+			<a href.one-way="job.link" target="_blank" class="font-semibold text-lg text-blue-700 hover:text-blue-800 underline uppercase" router-ignore>${ job.title }</a>
+			<a if.bind="job.user_id === userId" route-href="route: edit-job; params.bind: { id: job.id };" class="flex-no-wrap flex flex-row content-center items-center justify-center w-4 h-4 ml-2 border-black border-solid border bg-white hover:bg-purple-200 rounded">
+				<img src="https://material.io/tools/icons/static/icons/baseline-edit-24px.svg" alt="Edit job" class="w-4 h-4">
+			</a>
+		</div>
+		<p class="text-sm">${ job.description }</p>
+	</div>
+</template>

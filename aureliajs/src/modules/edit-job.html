@@ -1,3 +1,21 @@
 <template>
-	<h1>Edit Job</h1>
+	<main class="flex-no-wrap flex flex-row content-center items-center justify-center w-full h-full bg-gray-100">
+		<section class="flex-no-wrap flex flex-col content-center items-center justify-center w-2/5 p-4 bg-gray-200">
+			<header class="flex-no-wrap flex flex-row content-center items-center self-start justify-start w-full">
+				<h1 class="font-semibold text-3xl text-gray-800 underline uppercase">Edit Job</h1>
+				<button class="flex-no-wrap inline-flex flex-row content-center items-center justify-center w-6 h-6 mr-2 ml-auto text-xs text-transparent bg-red-400 hover:bg-red-700 rounded" click.delegate="delete()">
+					<img src="https://material.io/tools/icons/static/icons/baseline-delete_outline-24px.svg" alt="Delete">
+				</button>
+			</header>
+			<span id="submit-error" class="inline-block self-start pl-2 mb-1 text-sm text-red-500 invisible"></span>
+			<form name="edit-job" id="edit-job" class="flex-no-wrap flex flex-col flex-grow content-start items-start justify-start w-full h-auto" submit.delegate="submit($event)">
+				<input-text class="flex-no-wrap flex flex-col content-start items-start justify-start w-full p-2 mb-2" elem-id.one-time="'title'" input.one-time="job.title"></input-text>
+				<input-link class="flex-no-wrap flex flex-col content-start items-start justify-start w-full p-2 mb-2" elem-id.one-time="'link'" input.one-time="job.link"></input-link>
+				<input-text class="flex-no-wrap flex flex-col content-start items-start justify-start w-full p-2 mb-2" elem-id.one-time="'description'" input.one-time="job.description"></input-text>
+				<div class="flex-no-wrap flex flex-row content-end items-center justify-end w-full">
+					<input type="submit" value="Confirm" id="submit" class="p-2 mr-2 text-gray-100 uppercase disabled:cursor-default cursor-pointer bg-gray-800 hover:bg-gray-700 disabled:bg-gray-600" disabled.one-way="isDisabled">
+				</div>
+			</form>
+		</section>
+	</main>
 </template>

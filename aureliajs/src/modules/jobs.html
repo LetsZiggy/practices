@@ -1,3 +1,7 @@
 <template>
-	<h1>Jobs List</h1>
+	<main class="flex-no-wrap flex flex-col content-start items-start justify-start w-full h-full bg-gray-100">
+		<h1 class="mt-2 ml-2 font-semibold text-3xl text-gray-800 underline uppercase">Jobs List</h1>
+		<h3 if.bind="!jobs.length" class="flex-no-wrap flex flex-row flex-grow content-center items-center self-stretch justify-center w-auto h-auto mx-4 my-4 font-semibold text-6xl text-gray-200 select-none">No jobs available</h3>
+		<job if.bind="jobs.length" repeat.for="job of jobs" class="flex-no-wrap flex flex-row content-start items-start self-stretch justify-start w-auto h-20 mx-4 mt-4 bg-gray-200 hover:bg-gray-300" job.one-way="job" index.one-way="$index"></job>
+	</main>
 </template>

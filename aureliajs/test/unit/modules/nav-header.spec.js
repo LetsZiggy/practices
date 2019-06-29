@@ -175,11 +175,13 @@ describe("Stage Nav-Header Component", () => {
 				spyOn(component.viewModel.http.http, "fetch")
 					.and.returnValue(
 						Promise.resolve(mockResponseObject(
+							{ data: { identifier: "localhost" }},
 							{ status: 200, statusText: "OK" },
 						)),
 					)
 
 				spyOn(component.viewModel.store, "dispatch")
+					.withArgs("setIdentifier", "localhost").and.returnValue()
 					.withArgs("toggleIsSignin").and.returnValue()
 					.withArgs("setUsername").and.returnValue()
 					.withArgs("setUserId").and.returnValue()
@@ -211,11 +213,13 @@ describe("Stage Nav-Header Component", () => {
 				spyOn(component.viewModel.http.http, "fetch")
 					.and.returnValue(
 						Promise.resolve(mockResponseObject(
+							{ data: { identifier: "localhost" }},
 							{ status: 200, statusText: "OK" },
 						)),
 					)
 
 				spyOn(component.viewModel.store, "dispatch")
+					.withArgs("setIdentifier", "localhost").and.returnValue()
 					.withArgs("toggleIsSignin").and.returnValue()
 					.withArgs("setUsername").and.returnValue()
 					.withArgs("setUserId").and.returnValue()
@@ -247,11 +251,13 @@ describe("Stage Nav-Header Component", () => {
 				spyOn(component.viewModel.http.http, "fetch")
 					.and.returnValue(
 						Promise.resolve(mockResponseObject(
+							{ data: { identifier: "localhost" }},
 							{ status: 200, statusText: "OK" },
 						)),
 					)
 
 				spyOn(component.viewModel.store, "dispatch")
+					.withArgs("setIdentifier", "localhost").and.returnValue()
 					.withArgs("toggleIsSignin").and.returnValue()
 					.withArgs("setUsername").and.returnValue()
 					.withArgs("setUserId").and.returnValue()

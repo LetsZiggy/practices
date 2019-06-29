@@ -37,6 +37,14 @@ import { DEFAULT_RESPONSE_OBJECT, componentStateInit, componentSignInInit } from
 			pluck("present", "jobs"),
 			distinctUntilChanged(),
 		),
+		identifier: (store) => store.state.pipe(
+			pluck("present", "identifier"),
+			distinctUntilChanged(),
+		),
+		token: (store) => store.state.pipe(
+			pluck("present", "token"),
+			distinctUntilChanged(),
+		),
 	},
 })
 @inject(Router, EventAggregator, Store, HTTP)
@@ -60,6 +68,7 @@ export class EditJob {
 		this.isDisabled = true
 
 		registerActions(this.store, [
+			{ name: "setToken", key: "setToken" },
 			{ name: "updateJob", key: "updateJob" },
 			{ name: "deleteJob", key: "deleteJob" },
 			{ name: "toggleJobTitleValid", key: "toggleJobTitleValid" },
@@ -76,7 +85,7 @@ export class EditJob {
 				return false
 			}
 
-			await componentSignInInit(this.store, this.http)
+			await componentSignInInit(this.store, this.http, this.identifier)
 		}
 
 		this.job = this.jobs
@@ -91,6 +100,7 @@ export class EditJob {
 
 	canDeactivate () {
 		unregisterActions(this.store, [
+			{ key: "setToken" },
 			{ key: "updateJob" },
 			{ key: "deleteJob" },
 			{ key: "toggleJobTitleValid" },
@@ -105,6 +115,7 @@ export class EditJob {
 		event.preventDefault()
 
 		const data = {
+			token: this.token,
 			id: this.job.id,
 			user_id: this.userId,
 		}
@@ -144,6 +155,7 @@ export class EditJob {
 
 	async delete () {
 		const data = {
+			token: this.token,
 			id: this.job.id,
 			user_id: this.userId,
 		}

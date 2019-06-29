@@ -25,6 +25,14 @@ import { DEFAULT_RESPONSE_OBJECT, componentStateInit, componentSignInInit } from
 			pluck("present", "isPasswordValid"),
 			distinctUntilChanged(),
 		),
+		identifier: (store) => store.state.pipe(
+			pluck("present", "identifier"),
+			distinctUntilChanged(),
+		),
+		token: (store) => store.state.pipe(
+			pluck("present", "token"),
+			distinctUntilChanged(),
+		),
 	},
 })
 @inject(Router, EventAggregator, Store, HTTP)
@@ -48,6 +56,7 @@ export class Signin {
 		this.isDisabled = true
 
 		registerActions(this.store, [
+			{ name: "setToken", key: "setToken" },
 			{ name: "toggleUsernameValid", key: "toggleUsernameValid" },
 			{ name: "togglePasswordValid", key: "togglePasswordValid" },
 		])
@@ -56,7 +65,7 @@ export class Signin {
 	async canActivate (params, routeConfig, navigationInstruction) {
 		if (this.router.isNavigatingFirst || this.router.isNavigatingRefresh) {
 			await componentStateInit(this.store)
-			await componentSignInInit(this.store, this.http)
+			await componentSignInInit(this.store, this.http, this.identifier)
 		}
 
 		if (this.isSignin) {
@@ -68,6 +77,7 @@ export class Signin {
 
 	canDeactivate () {
 		unregisterActions(this.store, [
+			{ key: "setToken" },
 			{ key: "toggleUsernameValid" },
 			{ key: "togglePasswordValid" },
 		])
@@ -78,7 +88,11 @@ export class Signin {
 	async submit (event) {
 		event.preventDefault()
 
-		const data = {}
+		const data = {
+			identifier: this.identifier,
+			token: this.token,
+		}
+
 		const formData = new FormData(document.getElementById("signin"))
 
 		for (const entry of formData.entries()) {

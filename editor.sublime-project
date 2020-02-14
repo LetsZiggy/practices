@@ -1,0 +1,65 @@
+{
+	"folders": [
+		{
+			"path": ".",
+			"name": "root",
+			"folder_exclude_patterns": [ ".svn", ".git", ".hg", "CVS", "django" ],
+			"follow_symlinks": true,
+		},
+		{
+			"path": "django",
+			"name": "django",
+			"folder_exclude_patterns": [ "__pycache__", "venv" ],
+			"follow_symlinks": true,
+		},
+	],
+	"settings": {
+		/*"default_encoding": "UTF-8",*/
+		/*"default_line_ending": "unix",*/
+		"detect_indentation": true,
+		/*"ensure_newline_at_eof_on_save": true,*/
+		"show_definitions": false,
+		"show_line_endings": true,
+		/*"tab_size": 2,*/
+		/*"translate_tabs_to_spaces": false,*/
+		/*"trim_trailing_white_space_on_save": "all",*/
+		"use_tab_stops": true,
+		"word_wrap": true,
+
+		/* sublack */
+		"sublack": {
+			"black_command": "${folder}/django/venv/bin/black",
+			"black_target_version": [ "py38" ],
+		},
+
+		/* SublimeLinter */
+		/* SublimeLinter-pylint */
+		"SublimeLinter.linters.pylint.disable": false,
+		"SublimeLinter.linters.pylint.python": "${folder}/django/venv/bin/python",
+		"SublimeLinter.linters.pylint.working_dir": "${folder:$file_path}",
+		"SublimeLinter.linters.pylint.executable": "${folder}/django/venv/bin/pylint",
+		"SublimeLinter.linters.pylint.args": [
+			"--rcfile=${folder}/django/pyproject.toml",
+			"--load-plugins=pylint_quotes,pylint_django,pylint_django.checkers.db_performance",
+		],
+		"SublimeLinter.linters.pylint.lint_mode": "load_save",
+		"SublimeLinter.linters.pylint.selector": "source.python, source.py",
+
+		/* LSP */
+		// "lsp_format_on_save": true,
+		"lsp_code_actions_on_save": {
+			/* "source.fixAll.json": true, */
+		},
+
+		"LSP": {
+			/* LSP-pyright */
+			"LSP-pyright": {
+				"enabled": true,
+				"settings": {
+					"python.pythonPath": "${folder}/django/venv/bin/python",
+					"python.venvPath": "${folder}/venv",
+				},
+			},
+		},
+	},
+}

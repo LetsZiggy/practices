@@ -32,4 +32,7 @@ urlpatterns = [
 
 	# products
 	path("products/", include("products.urls")),
+
+	# blog
+	path("blog/", include("blog.urls")),
 ]

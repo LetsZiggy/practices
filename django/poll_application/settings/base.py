@@ -53,7 +53,7 @@ INSTALLED_APPS = [
 	#---PLACEHOLDER---
 
 	# Project
-	#---PLACEHOLDER---
+	"polls.apps.PollsConfig",
 ]
 
 MIDDLEWARE = [

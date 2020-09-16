@@ -1,0 +1,92 @@
+{
+	"folders": [
+		{
+			"path": ".",
+			"name": "root",
+			"folder_exclude_patterns": [ ".svn", ".git", ".hg", "CVS", "node_modules", "documentation", "scripts" ],
+			"follow_symlinks": true,
+		},
+	],
+	"settings": {
+		/*"default_encoding": "UTF-8",*/
+		/*"default_line_ending": "unix",*/
+		"detect_indentation": true,
+		/*"ensure_newline_at_eof_on_save": true,*/
+		"show_definitions": false,
+		"show_line_endings": true,
+		/*"tab_size": 2,*/
+		/*"translate_tabs_to_spaces": false,*/
+		/*"trim_trailing_white_space_on_save": "all",*/
+		"use_tab_stops": true,
+		"word_wrap": true,
+
+		/* SublimeLinter */
+		/* SublimeLinter-eslint */
+		"SublimeLinter.linters.eslint.disable": true,
+		// "SublimeLinter.linters.eslint.working_dir": "${folder:$file_path}",
+		// "SublimeLinter.linters.eslint.executable": "${folder}/node_modules/.bin/eslint_d",
+		// "SublimeLinter.linters.eslint.lint_mode": "load_save",
+		// "SublimeLinter.linters.eslint.disable_if_not_dependency": false,
+		// "SublimeLinter.linters.eslint.selector": "source.ts, source.js - meta.attribute-with-value",
+
+		/* SublimeLinter-stylelint */
+		"SublimeLinter.linters.stylelint.disable": true,
+		// "SublimeLinter.linters.stylelint.working_dir": "${folder:$file_path}",
+		// "SublimeLinter.linters.stylelint.executable": "${folder}/node_modules/.bin/stylelint",
+		// "SublimeLinter.linters.stylelint.lint_mode": "load_save",
+		// "SublimeLinter.linters.stylelint.disable_if_not_dependency": false,
+		// "SublimeLinter.linters.stylelint.selector": "source.css, source.sass, source.scss",
+
+		/* LSP */
+		// "lsp_format_on_save": true,
+		"lsp_code_actions_on_save": {
+			// "source.fixAll.json": true,
+			"source.fixAll.eslint": true,
+			"source.fixAll.stylelint": true,
+		},
+
+		"LSP": {
+			/* LSP-eslint */
+			"LSP-eslint": {
+				"enabled": true,
+				"settings": {
+					"probe": [ "javascript", "typescript" ],
+					"validate": [ "javascript", "typescript" ],
+					"workingDirectories": [
+						"${folder}/aureliajs",
+						"${folder}/aureliajs/src",
+						"${folder}/aureliajs/tailwindcss-plugins",
+						"${folder}/aureliajs/test",
+					],
+				},
+				"selector": "source.js | source.ts",
+			},
+
+			/* LSP-stylelint */
+			"LSP-stylelint": {
+				"enabled": true,
+				"settings": {
+					"stylelint.configFile": "${folder}/.stylelintrc.js",
+					"snippet": [ "css" ],
+					"validate": [ "css", "html" ],
+				},
+				"selector": "source.css | source.css.tailwind",
+			},
+		},
+
+		"project_syntaxes": [
+			{
+				"syntax": "Aurelia HTML/AureliaHTML",
+				"rules": [
+					{ "globmatch": "**/*.html" },
+				],
+			},
+			{
+				"syntax": "Tailwind CSS/Tailwind CSS",
+				"rules": [
+					{ "globmatch": "**/*.css" },
+				],
+			},
+		],
+	},
+}
